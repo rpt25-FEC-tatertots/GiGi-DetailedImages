@@ -1,0 +1,39 @@
+{
+  "name": "GiGi-DetailedImages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react-dev": "webpack --watch",
+    "server-dev": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpt25-FEC-tatertots/GiGi-DetailedImages.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpt25-FEC-tatertots/GiGi-DetailedImages/issues"
+  },
+  "homepage": "https://github.com/rpt25-FEC-tatertots/GiGi-DetailedImages#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.17.0",
+    "webpack-cli": "^4.4.0"
+  }
+}
