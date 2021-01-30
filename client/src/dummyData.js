@@ -1,4 +1,4 @@
-const data = [
+module.exports = [
   {
     "productId": 1,
     "detailImages": [
@@ -9,6 +9,5 @@ const data = [
       'www.patagonia.com/media/videos/fit_motion/spring_2020/21217_SMDB_FIT_MOTION1.mp4'
     ]
   }
-];
+]
 
-export default data;

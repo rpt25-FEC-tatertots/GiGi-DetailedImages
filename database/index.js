@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher', { useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/detailedImages', {useNewUrlParser: true, useUnifiedTopology: true});
 
 //get the default connection
 const db = mongoose.connection;
@@ -18,8 +18,10 @@ let imageSchema = mongoose.Schema({
 //compile the schema into a Model
 let Images = mongoose.model('Images', imageSchema);
 
+let addOne = (imagesData) => Images.create(imagesData);
+
 let findProductById = (id) => {
-  return Images.findById(id)
+  return Images.findOne({ productId: id })
     .then(data => {
       console.log('found the product in the table')
       return data;
@@ -28,4 +30,5 @@ let findProductById = (id) => {
 }
 
 module.exports.findProductById = findProductById;
+module.exports.addOne = addOne;
 
