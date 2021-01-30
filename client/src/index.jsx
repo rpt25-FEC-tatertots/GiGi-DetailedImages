@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Image from './components/Image.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends React.Component {
   }
 
   getProductImages() {
-    
+
     axios.get(`/photos?product_id=${1}`)
       .then(response => this.setState({ images: response.data }))
       .catch(err => console.log(err))
@@ -22,18 +23,12 @@ class App extends React.Component {
   componentDidMount() {
     this.getProductImages();
   }
-  
+
   render() {
-    const { images } = this.state;
-    let display = images.map(image => {
-      console.log(image)
-      return <img src={`https://${image}`}></img>
-      // return <img src={image}></img>
-    })
     return (
       <div>
         <h1>Detailed Images</h1>
-        {display}
+        <Image images={this.state.images}/>
       </div>
     )
   }
