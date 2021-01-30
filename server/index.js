@@ -9,7 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/photos', (req, res) => {
   let productId = req.query.product_id;
-  console.log(productId)
+  db.findProductById(productId)
+    .then(data => res.send(data.detailImages))
+    .catch(err => res.sendStatus(404));
 })
 
 let port = 6001
