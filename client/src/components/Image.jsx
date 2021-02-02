@@ -54,7 +54,6 @@ const Picture = styled.img`
   }
 `
 const Video = styled.video`
-  /* max-width: 50%; */
   width: 50%;
   max-height: 100%;
   object-fit: cover;
@@ -64,6 +63,7 @@ const Video = styled.video`
     width: 100%;
   }
 `
+//wraps the entire images and mp4 section
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
