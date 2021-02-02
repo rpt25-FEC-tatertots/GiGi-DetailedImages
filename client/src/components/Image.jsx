@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Popup from 'reactjs-popup';
 import { FaSistrix } from 'react-icons/fa';
+import Modal from './Modal.jsx';
 
 //search icon
 const Icon = styled.div`
@@ -108,9 +109,22 @@ class Image extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      windowSize: window.innerWidth
+      windowSize: window.innerWidth,
+      isOpen: false
     }
     this.handleResize = this.handleResize.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleOpen(e) {
+    e.preventDefault();
+    this.setState({ isOpen: true });
+  }
+
+  handleClose(e) {
+    e.preventDefault();
+    this.setState({ isOpen: false });
   }
 
   handleResize() {
@@ -127,10 +141,10 @@ class Image extends React.Component {
 
   render() {
     const { images } = this.props;
-    const { windowSize } = this.state;
+    const { windowSize, isOpen } = this.state;
 
     const oneImg = 
-      <ImgContainer>
+      <ImgContainer onClick={this.handleOpen}>
         <Picture src={`https://${images[0]}`} alt="" key={0}/>
           <ImgHoverContainer>
             <SVGContainer>
@@ -143,7 +157,7 @@ class Image extends React.Component {
     const allImgs = images.map((image, index) => {
       if (index < 4 && this.state.windowSize > 768) {
         return (
-          <ImgContainer>
+          <ImgContainer onClick={this.handleOpen}>
             <Picture src={`https://${image}`} alt="" key={index}/>
               <ImgHoverContainer>
                 <SVGContainer>
@@ -171,9 +185,10 @@ class Image extends React.Component {
     windowSize > 768 ? display = allImgs : display = oneImg;
 
     return (
-      <Wrapper>
-        {display}
-      </Wrapper>
+      <>
+        <Wrapper>{display}</Wrapper>
+        <Modal isOpen={isOpen} handleClose={this.handleClose} images={images}></Modal>
+      </>
     )
   };
 };
