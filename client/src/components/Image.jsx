@@ -6,11 +6,11 @@ import { FaSistrix } from 'react-icons/fa';
 const Icon = styled.div`
   opacity: 0;
   transition: opacity .3s cubic-bezier(.235,0,.05,.95);
-  background-color: rgb(255 255 255 / .2);
+  background-color: rgb(255 255 255 / 0.4);
   border-radius: 1000px;
   font-weight: bold;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.1rem;
+  height: 3.1rem;
   position: relative;
   display: flex;
   justify-content: center;
@@ -19,10 +19,26 @@ const Icon = styled.div`
   z-index: 1000;
   left: calc(50%);
   top: calc(50%);
-  /* &&:hover {
-    opacity: 1;
-  } */
-  `
+`
+
+const Icon1 = styled(Icon)`
+  position: absolute;
+`
+const Counter = styled.button`
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-color: #fff;
+  height: 24px;
+  border: 1px solid #fff;
+  text-align: center;
+  border-radius: 12px;
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 24px;
+  z-index: 1;
+`
+
 
 const Picture = styled.img`
   width: 100%;
@@ -38,7 +54,6 @@ const Picture = styled.img`
   }
 `
 const Video = styled.video`
-  /* max-width: 50%; */
   width: 50%;
   max-height: 100%;
   object-fit: cover;
@@ -48,6 +63,7 @@ const Video = styled.video`
     width: 100%;
   }
 `
+//wraps the entire images and mp4 section
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -65,20 +81,47 @@ const Container = styled.div`
   &&:hover ${Icon} {
     opacity: 1;
   }
+  &&:hover ${Icon1} {
+    opacity: 1;
+  }
 `
 
 class Image extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      windowSize: window.innerWidth
+    }
+    this.handleResize = this.handleResize.bind(this);
+  }
+
+  handleResize() {
+    this.setState({ windowSize: window.innerWidth });
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener('resize', null);
   }
 
   render() {
     const { images } = this.props;
-    let test = images.map((image, index) => {
-      if (index < 4) {
+    const { windowSize } = this.state;
+
+    let oneImg = <Container>
+      <Icon1><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon1>
+      <Picture src={`https://${images[0]}`} alt="" />
+      <Counter>1/{images.length}</Counter>
+    </Container>
+
+    let allImgs = images.map((image, index) => {
+      if (index < 4 && this.state.windowSize > 768) {
         return (
           <Container>
-            <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent'/></Icon>
+            <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
             <Picture src={`https://${image}`} alt="" key={index} />
           </Container>
         )
@@ -97,9 +140,12 @@ class Image extends React.Component {
       }
     })
 
+    let display = '';
+    windowSize > 768 ? display = allImgs : display = oneImg;
+
     return (
       <Wrapper>
-        {test}
+        {display}
       </Wrapper>
     )
   };
