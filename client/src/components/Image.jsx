@@ -140,7 +140,7 @@ class Image extends React.Component {
           <Counter>1/{images.length}</Counter>
       </ImgContainer>
 
-    let allImgs = images.map((image, index) => {
+    const allImgs = images.map((image, index) => {
       if (index < 4 && this.state.windowSize > 768) {
         return (
           <ImgContainer>
@@ -167,7 +167,7 @@ class Image extends React.Component {
       }
     })
 
-    let display = '';
+    const display = '';
     windowSize > 768 ? display = allImgs : display = oneImg;
 
     return (
