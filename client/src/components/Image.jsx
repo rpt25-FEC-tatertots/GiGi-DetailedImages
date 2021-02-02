@@ -30,9 +30,10 @@ const Counter = styled.button`
   text-align: center;
   border-radius: 12px;
   padding: 0 12px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 24px;
   z-index: 1;
+
 `
 //images of the product
 const Picture = styled.img`
@@ -81,20 +82,11 @@ const ImgContainer = styled.div`
     opacity: 1;
   }
 `
-//wrap for sized down only
-const ImgContainer1 = styled.div`
-  border-radius: 5px;
-  display: flex;
-  flex: 1 0 40%;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  /* overflow: hidden; */
-  margin: 10px;
-  &&:hover ${Icon} {
-    opacity: 1;
-  }
+//video container
+const VideoContainer = styled(ImgContainer)`
+  justify-content: left;
 `
+
 //img hover only
 const ImgHoverContainer = styled.div`
   position: absolute;
@@ -159,15 +151,10 @@ class Image extends React.Component {
                 </SVGContainer>
               </ImgHoverContainer>
           </ImgContainer>
-
-          // <ImgContainer>
-          //   <Picture src={`https://${image}`} alt="" key={index} />
-          //   <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
-          // </ImgContainer>
         )
       } else {
         return (
-          <ImgContainer>
+          <VideoContainer>
             <Video
               muted
               loop='true'
@@ -175,7 +162,7 @@ class Image extends React.Component {
               src={`https://${image}`}
               key={index}
             />
-          </ImgContainer>
+          </VideoContainer>
         )
       }
     })
