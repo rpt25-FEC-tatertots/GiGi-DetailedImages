@@ -131,7 +131,7 @@ class Image extends React.Component {
 
     const oneImg = 
       <ImgContainer>
-        <Picture src={`https://${images[0]}`} alt="" />
+        <Picture src={`https://${images[0]}`} alt="" key={0}/>
           <ImgHoverContainer>
             <SVGContainer>
               <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
@@ -157,8 +157,8 @@ class Image extends React.Component {
           <VideoContainer>
             <Video
               muted
-              loop='true'
-              autoPlay='true'
+              loop={true}
+              autoPlay={true}
               src={`https://${image}`}
               key={index}
             />
@@ -167,7 +167,7 @@ class Image extends React.Component {
       }
     })
 
-    const display = '';
+    let display = '';
     windowSize > 768 ? display = allImgs : display = oneImg;
 
     return (
