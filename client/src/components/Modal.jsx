@@ -6,7 +6,6 @@ const MODAL_STYLES = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  // alignItems: 'center',
   position: 'relative',
   top: '25%',
   left: '25%',
