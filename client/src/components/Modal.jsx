@@ -34,7 +34,7 @@ export default function Modal(props) {
     if (index < 4) {
       return <img src={`https://${image}`} alt="" key={index}></img>
     } else {
-      return <video width="100%" height="100%" autoplay="" loop="" muted="" src={`https://${image}`} type="video/mp4"/> 
+      return <video width="100%" height="100%" autoPlay={true} loop={true} muted="" src={`https://${image}`} type="video/mp4"/> 
     }
   })
 
