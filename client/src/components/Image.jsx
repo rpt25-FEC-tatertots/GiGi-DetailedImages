@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Popup from 'reactjs-popup';
 import { FaSistrix } from 'react-icons/fa';
 
+//search icon
 const Icon = styled.div`
   opacity: 0;
   transition: opacity .3s cubic-bezier(.235,0,.05,.95);
@@ -17,13 +18,8 @@ const Icon = styled.div`
   align-items: center;
   cursor: pointer;
   z-index: 1000;
-  left: calc(50%);
-  top: calc(50%);
 `
-
-const Icon1 = styled(Icon)`
-  position: absolute;
-`
+//counter when screen is sized down
 const Counter = styled.button`
   position: absolute;
   right: 20px;
@@ -38,21 +34,20 @@ const Counter = styled.button`
   line-height: 24px;
   z-index: 1;
 `
-
-
+//images of the product
 const Picture = styled.img`
   width: 100%;
-  max-height: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   transition: opacity 1s,transform 1s cubic-bezier(.395,.005,.19,1),filter 1s;
   overflow: hidden;
-
-  &&:hover {
+  &:hover {
     transform: scale(1.05);
   }
 `
+//mp4 video of the product
 const Video = styled.video`
   width: 50%;
   max-height: 100%;
@@ -63,27 +58,58 @@ const Video = styled.video`
     width: 100%;
   }
 `
-//wraps the entire images and mp4 section
+//outermost div
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   @media (max-width: 768px) {
     flex-direction: column;
+    flex-wrap: nowrap;
   }
 `
-
-const Container = styled.div`
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 10px 5px 10px 5px;
-  width: 100%;
+//wraps img only
+const ImgContainer = styled.div`
+  border-radius: 5px;
+  display: flex;
   flex: 1 0 40%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 10px;
   &&:hover ${Icon} {
     opacity: 1;
   }
-  &&:hover ${Icon1} {
+`
+//wrap for sized down only
+const ImgContainer1 = styled.div`
+  border-radius: 5px;
+  display: flex;
+  flex: 1 0 40%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; */
+  margin: 10px;
+  &&:hover ${Icon} {
     opacity: 1;
   }
+`
+//img hover only
+const ImgHoverContainer = styled.div`
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  /* grid-template-rows: 5fr 1fr; */
+  &&:hover ${Icon} {
+    opacity: 1;
+  }
+`
+//svg only
+const SVGContainer = styled.div`
+  position: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 class Image extends React.Component {
@@ -111,23 +137,37 @@ class Image extends React.Component {
     const { images } = this.props;
     const { windowSize } = this.state;
 
-    let oneImg = <Container>
-      <Icon1><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon1>
-      <Picture src={`https://${images[0]}`} alt="" />
-      <Counter>1/{images.length}</Counter>
-    </Container>
+    const oneImg = 
+      <ImgContainer>
+        <Picture src={`https://${images[0]}`} alt="" />
+          <ImgHoverContainer>
+            <SVGContainer>
+              <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
+            </SVGContainer>
+          </ImgHoverContainer>
+          <Counter>1/{images.length}</Counter>
+      </ImgContainer>
 
     let allImgs = images.map((image, index) => {
       if (index < 4 && this.state.windowSize > 768) {
         return (
-          <Container>
-            <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
-            <Picture src={`https://${image}`} alt="" key={index} />
-          </Container>
+          <ImgContainer>
+            <Picture src={`https://${image}`} alt="" key={index}/>
+              <ImgHoverContainer>
+                <SVGContainer>
+                  <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
+                </SVGContainer>
+              </ImgHoverContainer>
+          </ImgContainer>
+
+          // <ImgContainer>
+          //   <Picture src={`https://${image}`} alt="" key={index} />
+          //   <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
+          // </ImgContainer>
         )
       } else {
         return (
-          <Container>
+          <ImgContainer>
             <Video
               muted
               loop='true'
@@ -135,7 +175,7 @@ class Image extends React.Component {
               src={`https://${image}`}
               key={index}
             />
-          </Container>
+          </ImgContainer>
         )
       }
     })
