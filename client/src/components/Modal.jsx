@@ -32,9 +32,9 @@ export default function Modal(props) {
   }
   let display = images.map((image, index) => {
     if (index < 4) {
-      return <img src={`https://${image}`} alt="" key={index}></img>
+      return <img src={`https://${image}`} alt="" key={image}></img>
     } else {
-      return <video width="100%" height="100%" autoPlay={true} loop={true} muted="" src={`https://${image}`} type="video/mp4" />
+      return <video width="100%" height="100%" autoPlay={true} loop={true} muted="" src={`https://${image}`} type="video/mp4" key={image}/>
     }
   })
 

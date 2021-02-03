@@ -145,7 +145,7 @@ class Image extends React.Component {
 
     const oneImg = 
       <ImgContainer onClick={this.handleOpen}>
-        <Picture src={`https://${images[0]}`} alt="" key={0}/>
+        <Picture src={`https://${images[0]}`} alt="" key={images[0]}/>
           <ImgHoverContainer>
             <SVGContainer>
               <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
@@ -158,7 +158,7 @@ class Image extends React.Component {
       if (index < 4 && this.state.windowSize > 768) {
         return (
           <ImgContainer onClick={this.handleOpen}>
-            <Picture src={`https://${image}`} alt="" key={index}/>
+            <Picture src={`https://${image}`} alt="" key={image}/>
               <ImgHoverContainer>
                 <SVGContainer>
                   <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
@@ -174,7 +174,7 @@ class Image extends React.Component {
               loop={true}
               autoPlay={true}
               src={`https://${image}`}
-              key={index}
+              key={image}
             />
           </VideoContainer>
         )
