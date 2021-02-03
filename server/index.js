@@ -2,13 +2,14 @@ const express = require('express');
 const db = require('../database/index.js');
 
 let app = express();
-
+app.use('/:productID', express.static(__dirname + '/../client/dist'));
 app.use(express.static(__dirname + '/../client/dist'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/photos', (req, res) => {
-  let productId = req.query.product_id;
+app.get('/photos/:productID', (req, res) => {
+  let productId = req.params.productID;
   db.findProductById(productId)
     .then(data => res.send(data.detailImages))
     .catch(err => res.sendStatus(404));

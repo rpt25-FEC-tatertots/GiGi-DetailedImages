@@ -22,6 +22,7 @@
   "homepage": "https://github.com/rpt25-FEC-tatertots/GiGi-DetailedImages#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.11.14",
     "mysql": "^2.18.1",
