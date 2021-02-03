@@ -16,7 +16,7 @@ const MODAL_STYLES = {
 }
 
 const OVERLAY_STYLES = {
-  position: 'fixed',
+  // position: 'fixed',
   top: '0',
   left: '0',
   right: '0',
@@ -34,18 +34,17 @@ export default function Modal(props) {
     if (index < 4) {
       return <img src={`https://${image}`} alt="" key={index}></img>
     } else {
-      return <video width="100%" height="100%" autoPlay={true} loop={true} muted="" src={`https://${image}`} type="video/mp4"/> 
+      return <video width="100%" height="100%" autoPlay={true} loop={true} muted="" src={`https://${image}`} type="video/mp4" />
     }
   })
 
   return ReactDom.createPortal(
-    <>
-      <div style={OVERLAY_STYLES} />
-      <div style={MODAL_STYLES}>
-        <div onClick={handleClose}><CgClose size='1.25rem'></CgClose></div>
-        {display}
-      </div>
-    </>,
+      <div style={OVERLAY_STYLES}>
+        <div style={MODAL_STYLES}>
+          <div onClick={handleClose}><CgClose size='1.25rem'></CgClose></div>
+          {display}
+        </div>
+      </div>,
     document.getElementById('portal')
   )
 }

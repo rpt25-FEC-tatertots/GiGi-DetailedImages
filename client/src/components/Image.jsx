@@ -126,7 +126,7 @@ class Image extends React.Component {
     e.preventDefault();
     this.setState({ isOpen: false });
   }
-
+  
   handleResize() {
     this.setState({ windowSize: window.innerWidth });
   }

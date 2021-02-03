@@ -14,7 +14,7 @@ app.get('/photos', (req, res) => {
     .catch(err => res.sendStatus(404));
 })
 
-let port = 6001
+let port = 5001
 
 app.listen(port, function () {
     console.log(`listening on port ${port}`);
