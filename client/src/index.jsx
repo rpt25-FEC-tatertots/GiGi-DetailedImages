@@ -14,8 +14,8 @@ class App extends React.Component {
   }
 
   getProductImages() {
-
-    axios.get(`/photos?product_id=${1}`)
+    let id = window.location.pathname
+    axios.get(`/photos${id}`)
       .then(response => this.setState({ images: response.data }))
       .catch(err => console.log(err))
   }
