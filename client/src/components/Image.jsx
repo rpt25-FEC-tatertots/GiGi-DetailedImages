@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Popup from 'reactjs-popup';
 import { FaSistrix } from 'react-icons/fa';
 import Modal from './Modal.jsx';
 
@@ -38,13 +37,16 @@ const Counter = styled.button`
 `
 //images of the product
 const Picture = styled.img`
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   transition: opacity 1s,transform 1s cubic-bezier(.395,.005,.19,1),filter 1s;
   overflow: hidden;
+  @media (max-width: 510px) {
+    max-width: 100%;
+  }
   &:hover {
     transform: scale(1.05);
   }
@@ -56,15 +58,15 @@ const Video = styled.video`
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (max-width: 510px) {
+    max-width: 100%;
   }
 `
 //outermost div
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  @media (max-width: 768px) {
+  @media (max-width: 510px) {
     flex-direction: column;
     flex-wrap: nowrap;
   }
@@ -147,34 +149,34 @@ class Image extends React.Component {
       <ImgContainer onClick={this.handleOpen}>
         <Picture src={images[0]} alt="" key={images[0]}/>
           <ImgHoverContainer>
-            <SVGContainer>
-              <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
+            <SVGContainer flexDirection='row-reverse'
+  display='flex'>
+              <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent'/></Icon>
             </SVGContainer>
           </ImgHoverContainer>
           <Counter>1/{images.length}</Counter>
       </ImgContainer>
 
     const allImgs = images.map((image, index) => {
-      if (index < 4 && this.state.windowSize > 768) {
+      if (index < 4 && this.state.windowSize > 510) {
         return (
-          <ImgContainer onClick={this.handleOpen}>
-            <Picture src={image} alt="" key={image}/>
+          <ImgContainer onClick={this.handleOpen} key={index}>
+            <Picture src={image} alt=""/>
               <ImgHoverContainer>
                 <SVGContainer>
-                  <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent' /></Icon>
+                  <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent'/></Icon>
                 </SVGContainer>
               </ImgHoverContainer>
           </ImgContainer>
         )
       } else {
         return (
-          <VideoContainer>
+          <VideoContainer key={index}>
             <Video
               muted
               loop={true}
               autoPlay={true}
               src={image}
-              key={image}
             />
           </VideoContainer>
         )
@@ -182,7 +184,7 @@ class Image extends React.Component {
     })
 
     let display = '';
-    windowSize > 768 ? display = allImgs : display = oneImg;
+    windowSize > 510 ? display = allImgs : display = oneImg;
 
     return (
       <>

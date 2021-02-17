@@ -22,7 +22,7 @@ const OVERLAY_STYLES = {
   right: '0',
   bottom: '0',
   backgroundColor: '#fff',
-  zIndex: '1000'
+  zIndex: '1000',
 }
 
 export default function Modal(props) {
@@ -41,7 +41,7 @@ export default function Modal(props) {
   return ReactDom.createPortal(
       <div style={OVERLAY_STYLES}>
         <div style={MODAL_STYLES}>
-          <div onClick={handleClose}><CgClose size='1.25rem'></CgClose></div>
+          <div onClick={handleClose} ><CgClose size='1.25rem'></CgClose></div>
           {display}
         </div>
       </div>,
