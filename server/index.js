@@ -20,7 +20,7 @@ app.get('/photos/:productID', async (req, res) => {
   let productId = req.params.productID;
   //ping iamges service with the prod id
   try {
-    const images = await axios.get(`http://localhost:5003/images/detailImages/${productId}`)
+    const images = await axios.get(`http://54.241.34.87:5003/images/detailImages/${productId}`)
     // console.log('successfully got images from Images', images.data);
     const { detailImages } = images.data;
     res.send(detailImages.reverse());
