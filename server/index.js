@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../database/index.js');
+// const db = require('../database/index.js');
 const axios = require('axios');
 
 let app = express();
