@@ -149,8 +149,7 @@ class Image extends React.Component {
       <ImgContainer onClick={this.handleOpen}>
         <Picture src={images[0]} alt="" key={images[0]}/>
           <ImgHoverContainer>
-            <SVGContainer flexDirection='row-reverse'
-  display='flex'>
+            <SVGContainer>
               <Icon><FaSistrix size='1.25rem' fontWeight='bold' background='transparent'/></Icon>
             </SVGContainer>
           </ImgHoverContainer>
