@@ -27,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Detailed Images</h1>
+        <h1 style={{color: 'transparent'}}>Detailed Images</h1>
         <Image images={this.state.images}/>
       </div>
     )
