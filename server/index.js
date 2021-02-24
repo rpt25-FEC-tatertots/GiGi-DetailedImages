@@ -1,8 +1,10 @@
 const express = require('express');
 // const db = require('../database/index.js');
 const axios = require('axios');
+const compression = require('compression');
 
 let app = express();
+app.use(compression());
 app.use('/:productID', express.static(__dirname + '/../client/dist'));
 app.use(express.static(__dirname + '/../client/dist'));
 
