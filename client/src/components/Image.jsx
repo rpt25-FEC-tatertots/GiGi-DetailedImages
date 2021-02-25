@@ -147,7 +147,7 @@ class Image extends React.Component {
 
     const oneImg = 
       <ImgContainer onClick={this.handleOpen}>
-        <Picture src={images[0]} alt="" key={images[0]}/>
+        <Picture src={images[0]} alt="" key={images[0]} style={{maxWidth: '100%', maxHeigth: '100%'}}/>
           <ImgHoverContainer>
             <SVGContainer flexDirection='row-reverse'
   display='flex'>
